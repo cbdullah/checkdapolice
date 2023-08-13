@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  background-color: #f4ecd8;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.user-input {
+  padding: 10px;
+  margin: 10px;
+  border: 2px solid #333;
+  border-radius: 5px;
+}
+
+.output {
+  padding: 20px; 
+  border: 2px solid #333;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.red {
+  background-color: #ffcccc;
+  color: #990000;
+}
+
+.yellow {
+  background-color: #ffffcc;
+  color: #999900;  
+} 
+
+.green {
+  background-color: #ccffcc;
+  color: #006600;
+}
+
+.maroon {
+  background-color: #cc9999;
+  color: #660000;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>Police Risk Simulator</h1>
+
+<div class="user-input">
+  <label for="police-funding">Police Funding:</label>
+  <select id="police-funding">
+    <option value="pasco">Pasco FL</option>
+    <option value="lawrence">St. Lawrence NY</option>  
+    <option value="kent">Kent MI</option>
+    <option value="lapeer">Lapeer MI</option>
+  </select>
+</div>
+
+<div class="user-input">
+  <label for="violence">Violence:</label>
+  <select id="violence">
+    <option value="pasco">Pasco FL</option>
+    <option value="lawrence">St. Lawrence NY</option>
+    <option value="kent">Kent MI</option>  
+    <option value="lapeer">Lapeer MI</option>
+  </select>  
+</div>
+
+<div class="user-input">
+  <label for="accountability">Police Accountability:</label>
+  <select id="accountability">
+    <option value="pasco">Pasco FL</option>
+    <option value="lawrence">St. Lawrence NY</option>
+    <option value="kent">Kent MI</option>
+    <option value="lapeer">Lapeer MI</option>
+  </select>
+</div>
+
+<div id="output" class="output">
+  <p>Results will display here after selecting options above.</p>
+</div>
+
+<script>
+const fundingSelect = document.getElementById("police-funding");
+const violenceSelect = document.getElementById("violence"); 
+const accountabilitySelect = document.getElementById("accountability");
+const outputDiv = document.getElementById("output");
+
+fundingSelect.addEventListener("change", displayFunding);
+violenceSelect.addEventListener("change", displayViolence);
+accountabilitySelect.addEventListener("change", displayAccountability);
+
+function displayFunding() {
+  outputDiv.innerHTML = "";
+  
+  const selection = fundingSelect.value;
+  
+  if(selection === "pasco") {
+    outputDiv.innerHTML = `<p class="red">OFF-TRACK</p>
+                            <p>In 2020, Pasco spent 50x more on their police dept then housing,  
+                              and 4.2x then health.....MORE POLICE FUNDING THEN 60% of DEPTS</p>`;
+  }
+  
+  if(selection === "lawrence") {
+    outputDiv.innerHTML = `<p class="green">ON-TRACK</p>
+                            <p>STL spent more on health and housing in 2021 then on their polling department</p>`;
+  }  
+
+  if(selection === "lapeer") {
+    outputDiv.innerHTML = `<p class="green">ON-TRACK</p>
+                            <p>Lapeer spent 5x more on Health then on their Policing Department</p>`;
+  }
+
+  if(selection === "kent") {
+    outputDiv.innerHTML = `<p class="green">ON-TRACK</p>
+                            <p>Finances on Policing: $33.38M spent | 261,999 Residents | $127 per Resident</p>`;
+  }
+}
+
+function displayViolence() {
+  
+  outputDiv.innerHTML = "";  
+
+  const selection = violenceSelect.value;
+
+  if(selection === "pasco") {
+    outputDiv.innerHTML = `<p class="red">OFF-TRACK</p>
+                            <p>More Police Shootings per Arrest than 62% of Depts</p>
+                            <p><strong>DEADLY FORCE BY ARMED STATUS</strong></p>
+                            <p>36% Unarmed | 64% Did Not Allegedly Have a Gun</p>
+                            <p>14 Killings by Police from 2013-21 | 1 every 10k arrests</p>`;
+  }
+
+  if(selection === "lapeer") {
+    outputDiv.innerHTML = `<p class="yellow">AT-RISK</p>
+                            <p><strong>LESS-LETHAL FORCE</strong> 
+                              Used More Force per Arrest than 33% of Depts: 30 Incidents | 76 every 10k arrests</p>
+                            <p>NO DATA ON OTHER SECTIONS</p>`;
+  }
+
+  if(selection === "lawrence") {
+    outputDiv.innerHTML = `<p class="yellow">AT-RISK</p>
+                            <p>NO DATA available</p>`;
+  }
+
+  if(selection === "kent") {
+    outputDiv.innerHTML = `<p class="red">OFF-Track</p>
+                            <p><strong>DEADLY FORCE BY ARMED STATUS</strong>
+                              50% Unarmed | 50% Did Not Allegedly Have a Gun</p>`;
+  }
+
+}
+
+function displayAccountability() {
+
+  outputDiv.innerHTML = "";
+
+  const selection = accountabilitySelect.value;
+
+  if(selection === "pasco") {
+    outputDiv.innerHTML = `<p class="maroon">CRITICAL</p>
+                            <p><strong>TOTAL CIVILIAN COMPLAINTS</strong>
+                              318 from 2020-21 | 5% Ruled in Favor of Civilians</p>`;
+  }
+
+  if(selection === "lapeer") {
+    outputDiv.innerHTML = `<p class="yellow">AT-RISK</p>
+                            <p>NO DATA available</p>`;
+  }
+
+  if(selection === "lawrence") {
+    outputDiv.innerHTML = `<p class="yellow">AT-RISK</p>
+                            <p>NO DATA available</p>`;
+  }
+
+  if(selection === "kent") {
+    outputDiv.innerHTML = `<p class="yellow">AT-RISK</p>
+                            <p><strong>TOTAL CIVILIAN COMPLAINTS</strong>
+                              5 from 2020 | 60% Ruled in Favor of Civilians</p>`;
+  }
+
+}
+</script>
+
+</body>
+</html>
+
